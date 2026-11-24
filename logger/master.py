@@ -46,9 +46,12 @@ def main():
         else:
             print(f"Using session '{sess_name}'...")
 
+        if(input("headless(on/off): ") == "off"): value = False
+        else: value = True
+
         browser = p.firefox.launch_persistent_context(
             user_data_dir=SESS_DIR,
-            headless=False,
+            headless=value,
             proxy={"server": "socks5://127.0.0.1:10808"},
             firefox_user_prefs={"network.proxy.socks_remote_dns": True}
         )
@@ -84,3 +87,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
